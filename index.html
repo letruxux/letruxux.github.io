@@ -1,9 +1,35 @@
-<img src="sorrybro.png"></img>
-<script>
-  $(document).ready(function () {
-    // Handler for .ready() called.
-    window.setTimeout(function () {
-        location.href = "https://beacons.ai/letruxux";
-    }, 5000);
-});
-</script>
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+    </style>
+    <script type="text/javascript">
+        function Redirect() {
+            window.location = "https://beacons.ai/letruxux";
+        }
+        setTimeout('Redirect()', 5000);   
+    </script>
+</head>
+
+<body>
+    <div class="imgbox">
+        <img class="center-fit" src='sorrybro.png'>
+    </div>
+</body>
+
+</html>
