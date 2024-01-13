@@ -1,35 +1,82 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            video {
+                width: 100%;
+                height: 100%;
+            }
 
-<head>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+            .play {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 99;
+                background-color: black;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+            }
 
-        .imgbox {
-            display: grid;
-            height: 100%;
-        }
+            .play > button {
+                background-color: black;
+                border: 2px solid white;
+                color: white;
+                padding-bottom: 15px;
+                padding-top: 15px;
+                padding-right: 50px;
+                padding-left: 50px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+            }
+            .play > button:hover {
+                background-color: rgb(60, 60, 60);
+                font-size: larger;
+            }
+        </style>
+    </head>
+    <body oncontextmenu="return false" ondragstart="return false">
+        <video
+            src="https://raw.githubusercontent.com/6h051/Red/main/video.mp4"
+            loop
+        ></video>
 
-        .center-fit {
-            max-width: 100%;
-            max-height: 100vh;
-            margin: auto;
-        }
-    </style>
-    <script type="text/javascript">
-        function Redirect() {
-            window.location = "https://pnrtscr.com/gz5n0s%20bu%20kanki";
-        }
-        setTimeout('Redirect()', 3000);   
-    </script>
-</head>
+        <div class="play"><button>start game</button></div>
+        <script>
+            window.addEventListener("beforeunload", (e) => e.preventDefault());
 
-<body>
-    <div class="imgbox">
-        <img class="center-fit" src='sorrybro.png'>
-    </div>
-</body>
-
+            function goFullScreen() {
+                const { documentElement } = document;
+                if (documentElement.requestFullscreen)
+                    documentElement.requestFullscreen();
+                else if (documentElement.mozRequestFullScreen)
+                    documentElement.mozRequestFullScreen();
+                else if (documentElement.webkitRequestFullscreen)
+                    documentElement.webkitRequestFullscreen();
+                else if (documentElement.msRequestFullscreen)
+                    documentElement.msRequestFullscreen();
+            }
+            const btn = document.querySelector("button");
+            const audio = document.querySelector("video");
+            const playDiv = document.querySelector(".play");
+            audio.style.display = "fixed";
+            btn.addEventListener("click", () => {
+                playDiv.style.display = "none";
+                audio.play();
+                goFullScreen();
+            });
+        </script>
+    </body>
 </html>
