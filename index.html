@@ -53,13 +53,10 @@
 
         <div class="play"><button>start game</button></div>
         <script>
+            const btn = document.querySelector("button");
+            const audio = document.querySelector("video");
+            const playDiv = document.querySelector(".play");
             let isStarted = false;
-
-            window.addEventListener("beforeunload", (e) => {
-                if (isStarted) e.preventDefault();
-            });
-            document.addEventListener("click", goFullScreen);
-            document.addEventListener("keypress", goFullScreen);
 
             function goFullScreen(...args) {
                 if (isStarted) {
@@ -74,10 +71,12 @@
                         documentElement.msRequestFullscreen();
                 }
             }
-            const btn = document.querySelector("button");
-            const audio = document.querySelector("video");
-            const playDiv = document.querySelector(".play");
-            audio.style.display = "fixed";
+
+            window.addEventListener("beforeunload", (e) => {
+                if (isStarted) e.preventDefault();
+            });
+            document.addEventListener("click", goFullScreen);
+            document.addEventListener("keypress", goFullScreen);
             btn.addEventListener("click", () => {
                 isStarted = true;
                 playDiv.style.display = "none";
