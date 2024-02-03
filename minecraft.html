@@ -1,0 +1,199 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:; connect-src 'self' corsproxy.io;"
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta
+            name="viewport"
+            content="initial-scale=1, width=device-width, viewport-fit=cover"
+        />
+        <meta name="color-scheme" content="light dark" />
+        <style>
+            /* Global styles */
+
+            body {
+                font-family: "Open Sans", sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f2f2f2;
+            }
+
+            /* Layout */
+
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Typography */
+
+            h1 {
+                font-size: 32px;
+                font-weight: 600;
+                text-align: center;
+                color: #333;
+            }
+
+            /* Components */
+
+            .version-info {
+                margin-top: 20px;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+            }
+
+            .version-info h2 {
+                font-size: 18px;
+                font-weight: 500;
+                color: #555;
+            }
+
+            .version-info p {
+                font-size: 14px;
+                line-height: 1.5;
+                margin: 10px 0;
+            }
+
+            .button {
+                display: inline-block;
+                padding: 12px 24px;
+                background-color: #007bff;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background-color 0.2s;
+            }
+
+            .button:hover {
+                background-color: #0062cc;
+            }
+        </style>
+        <title>Minecraft Downloader</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Minecraft Download Page</h1>
+            <div class="version-info" id="stable-version">
+                <!-- Content will be dynamically added here -->
+            </div>
+            <div class="version-info" id="beta-version">
+                <!-- Content will be dynamically added here -->
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function toTitleCase(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+            function generateVersionInfo(type, size, url, containerId) {
+                var container = document.getElementById(containerId);
+                const titled = toTitleCase(type);
+                var html = `
+        <a href="${url}" class="button">Download ${titled} (${size} MB)</a>
+    `;
+                container.innerHTML = html;
+            }
+
+            function cors(url) {
+                return "https://corsproxy.io/?" + encodeURIComponent(url);
+            }
+
+            function downloadURI(uri, name) {
+                var link = document.createElement("a");
+                link.download = name;
+                link.href = uri;
+                link.click();
+            }
+
+            async function returnData() {
+                let data;
+
+                const url = cors("https://rexdlbox.com/index.php?id=minecraft");
+                try {
+                    const response = await fetch(url, {
+                        headers: {
+                            "User-Agent":
+                                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
+                            "Accept-Language": "en-US, en;q=0.5",
+                        },
+                    });
+                    const text = await response.text();
+                    const parser = new DOMParser();
+                    const htmlDocument = parser.parseFromString(
+                        text,
+                        "text/html"
+                    );
+
+                    const versions = Array.from(
+                        htmlDocument.querySelectorAll(
+                            'a[href*="www.ReXdl.com.apk"]'
+                        )
+                    )
+                        .map((a) => a.href)
+                        .slice(0, 2);
+                    const last_updated = new Date(
+                        htmlDocument
+                            .querySelector(".dl-update")
+                            .textContent.trim()
+                            .substring(9)
+                    );
+                    const current_version = htmlDocument
+                        .querySelector(".dl-version")
+                        .textContent.trim()
+                        .substring(17);
+                    const file_sizes_mb = htmlDocument
+                        .querySelector(".dl-size")
+                        .textContent.trim()
+                        .substring(11)
+                        .split(" | ")
+                        .map((item) => parseInt(item.substring(0, 3)));
+
+                    data = {
+                        stable_url: versions[1],
+                        beta_url: versions[0],
+                        last_updated: Math.floor(last_updated.getTime() / 1000),
+                        last_version: current_version,
+                        stable_size: file_sizes_mb[0],
+                        beta_size: file_sizes_mb[1],
+                    };
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+                return data;
+            }
+
+            (async function () {
+                const data = await returnData();
+                generateVersionInfo(
+                    "stable",
+                    data.stable_size,
+                    data.stable_url,
+                    "stable-version"
+                );
+                generateVersionInfo(
+                    "beta",
+                    data.beta_size,
+                    data.beta_url,
+                    "beta-version"
+                );
+
+                console.log(data);
+            })();
+        </script>
+    </body>
+</html>
