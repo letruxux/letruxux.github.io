@@ -1,0 +1,63 @@
+/* General Styles */
+:root {
+    --bg: #1c1c1c;
+    --bg2: #232323;
+    --btn: #004c9e;
+    --btn-darker: #014389;
+    --text: #e6e6e6;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--bg2);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--btn);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: var(--btn-darker);
+}
+
+/* Media Queries for Mobile */
+@media only screen and (max-width: 600px) {
+    .container {
+        margin: 20px auto;
+        padding: 10px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .button {
+        padding: 10px 20px;
+    }
+}

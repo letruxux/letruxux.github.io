@@ -4,85 +4,13 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>letruxux.github.io</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-            }
-            video {
-                width: 100%;
-                height: 100%;
-                background-size: cover;
-            }
-
-            .play {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 99;
-                background-color: black;
-                width: 100%;
-                height: 100%;
-                text-align: center;
-            }
-
-            .play > button {
-                background-color: black;
-                border: 2px solid white;
-                color: white;
-                padding-bottom: 15px;
-                padding-top: 15px;
-                padding-right: 50px;
-                padding-left: 50px;
-                border-radius: 10px;
-                cursor: pointer;
-                transition: all 0.3s ease-in-out;
-            }
-            .play > button:hover {
-                background-color: rgb(60, 60, 60);
-                font-size: larger;
-            }
-        </style>
+        <link rel="stylesheet" href="css/index.css" />
     </head>
-    <body oncontextmenu="return false" ondragstart="return false">
-        <video src="https://letruxux.github.io/assets/jeff.mp4" loop></video>
-
-        <div class="play"><button>start game</button></div>
-        <script>
-            const btn = document.querySelector("button");
-            const audio = document.querySelector("video");
-            const playDiv = document.querySelector(".play");
-            let isStarted = false;
-
-            function goFullScreen(...args) {
-                if (isStarted) {
-                    const { documentElement } = document;
-                    if (documentElement.requestFullscreen)
-                        documentElement.requestFullscreen();
-                    else if (documentElement.mozRequestFullScreen)
-                        documentElement.mozRequestFullScreen();
-                    else if (documentElement.webkitRequestFullscreen)
-                        documentElement.webkitRequestFullscreen();
-                    else if (documentElement.msRequestFullscreen)
-                        documentElement.msRequestFullscreen();
-                }
-            }
-
-            window.addEventListener("beforeunload", (e) => {
-                if (isStarted) e.preventDefault();
-            });
-            document.addEventListener("click", goFullScreen);
-            document.addEventListener("keypress", goFullScreen);
-            btn.addEventListener("click", () => {
-                isStarted = true;
-                playDiv.style.display = "none";
-                audio.play();
-                goFullScreen();
-            });
-        </script>
+    <body>
+        <div class="container">
+            <a href="/game.html" class="button">my gaem</a>
+            <a href="/minecraft.html" class="button">minecraft apks</a>
+        </div>
+        <script src="js/index.js"></script>
     </body>
 </html>
