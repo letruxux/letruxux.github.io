@@ -2,6 +2,7 @@
 :root {
     --bg: #1c1c1c;
     --bg2: #232323;
+    --bg3: #080808;
     --btn: #004c9e;
     --btn-darker: #014389;
     --text: #e6e6e6;
@@ -42,6 +43,10 @@ h1 {
 
 .button:hover {
     background-color: var(--btn-darker);
+}
+
+button {
+    border: none;
 }
 
 /* Media Queries for Mobile */
