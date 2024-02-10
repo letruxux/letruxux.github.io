@@ -1,4 +1,6 @@
 const gridElement = document.querySelector(".grid");
+const overElement = document.querySelector(".over");
+const tutorialElement = document.querySelector(".tutorial");
 
 const utils = {
     youtubeIdFromUrl: function (url) {
@@ -59,6 +61,7 @@ const settings = {
     toggle: function () {
         this.element.style.display =
             this.element.style.display == "none" ? "unset" : "none";
+        overElement.classList.toggle("over");
     },
 };
 
@@ -75,13 +78,13 @@ settings.element.querySelector(".apply-btn").onclick = function () {
     gridElement.style.gridTemplateRows = `repeat(${gridX}, 1fr)`;
 
     if (links.length > gridX * gridY) {
-        const choice = confirm(
-            `The grid (${gridX}x${gridY}) is too small to fit all the videos. (${links.length}), want to try anyway?`
+        alert(
+            `The grid (${gridX}x${gridY}) is too small to fit all the videos. (${links.length})`
         );
-        if (!choice) {
-            return;
-        }
+        return;
     }
+
+    tutorialElement.remove();
 
     const iframes = utils.urlsToIFrames(links);
 
@@ -90,3 +93,5 @@ settings.element.querySelector(".apply-btn").onclick = function () {
         gridElement.innerHTML += ifr;
     }
 };
+
+overElement.classList.toggle("over");

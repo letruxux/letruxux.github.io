@@ -17,6 +17,20 @@ body * {
     height: 100%;
 }
 
+.tutorial {
+    --padding: 15px;
+    --width: 600px;
+    --height: 300px;
+    position: fixed;
+
+    top: calc(50% - var(--height) / 2);
+    left: calc(50% - var(--width) / 2);
+    z-index: 6;
+    height: var(--height);
+    width: var(--width);
+    padding: var(--padding);
+}
+
 .tools {
     --padding: 15px;
     --width: 600px;
@@ -59,10 +73,10 @@ body * {
     left: 0px;
     height: 100vh;
     width: 100vw;
-    backdrop-filter: blur(5px);
+    opacity: 0.8;
     z-index: 3;
     pointer-events: none;
-    opacity: 0;
+    background-color: black;
 }
 
 .settings-btn {
@@ -76,7 +90,10 @@ body * {
 }
 
 .settings-btn i {
-    margin-left: -11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1px;
 }
 
 #links {
@@ -87,4 +104,30 @@ body * {
 
 label {
     font-weight: bold;
+}
+
+.warning {
+    display: none;
+}
+
+a:visited,
+a:link {
+    color: cornflowerblue;
+}
+
+@media only screen and (max-width: 700px) {
+    .warning {
+        display: block;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        background-color: black;
+        font-size: 48px;
+        text-align: center;
+        font-weight: bolder;
+        color: white;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+    }
 }
