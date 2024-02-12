@@ -4,9 +4,9 @@ const tutorialElement = document.querySelector(".tutorial");
 
 const utils = {
     youtubeIdFromUrl: function (url) {
-        var regExp =
-            /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        var match = url.match(regExp);
+        const match = url.match(
+            /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+        );
         if (match && match[2].length == 11) {
             return match[2];
         } else {
@@ -14,7 +14,7 @@ const utils = {
         }
     },
     twitchUsernameFromUrl: function (url) {
-        var match = url.match(/(?:https?:\/\/)?(?:www\.)?twitch\.tv\/(\w+)/i);
+        const match = url.match(/(?:https?:\/\/)?(?:www\.)?twitch\.tv\/(\w+)/i);
         if (match) {
             return match[1];
         } else {
@@ -22,7 +22,7 @@ const utils = {
         }
     },
     kickUsernameFromUrl: function (url) {
-        var match = url.match(/(?:https?:\/\/)?(?:www\.)?kick\.com\/(\w+)/i);
+        const match = url.match(/(?:https?:\/\/)?(?:www\.)?kick\.com\/(\w+)/i);
         if (match) {
             return match[1];
         } else {
@@ -74,8 +74,8 @@ settings.element.querySelector(".apply-btn").onclick = function () {
         .value.replace(/ +(?= )/g, "")
         .split(" ");
 
-    gridElement.style.gridTemplateColumns = `repeat(${gridY}, 1fr)`;
-    gridElement.style.gridTemplateRows = `repeat(${gridX}, 1fr)`;
+    gridElement.style.gridTemplateColumns = `repeat(${gridX}, 1fr)`;
+    gridElement.style.gridTemplateRows = `repeat(${gridY}, 1fr)`;
 
     if (links.length > gridX * gridY) {
         alert(

@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "nokiafc";
+    src: url("/assets/nokiafc22.ttf");
+}
+body {
+    padding: 15px;
+    font-family: Arial, Helvetica, Arial sans-serif;
+}
+
+.dialog {
+    font-family: "nokiafc";
+    background-color: black;
+    border: 6px white solid;
+    font-size: 22pt;
+    min-height: 290px;
+    min-width: 780px;
+    padding-left: 250px;
+    padding-right: 250px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+    word-break: break-all;
+}
+
+button {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+}
