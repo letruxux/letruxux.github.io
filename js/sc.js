@@ -17,7 +17,7 @@ const cors = function (url) {
     const parser = new DOMParser();
     const htmlDocument = parser.parseFromString(text, "text/html");
     const newUrl = htmlDocument.querySelector(
-        "#post-77995 > div.cm-post-content > div.cm-entry-summary > ul:nth-child(12) > li > strong > span"
+        "span[style=\"color: #ff0000;\"]"
     ).textContent;
     location.href = newUrl;
 })();
