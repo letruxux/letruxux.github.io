@@ -11,16 +11,21 @@ const choices = [
     },
     {
         url: "https://www.informarea.it/streamingcommunity-nuovo-indirizzo/",
-        selector: 'span[style="color: #ff0000;"]',
+        selector: 'span[style="color: #ff0000;"][href*="streamingcommunity"]',
     },
 ];
 
 const h1 = document.body.querySelector("h1");
 
-async function animateText(text) {
+/**
+ * @param {HTMLElement} element the element to change text
+ * @param {string} text destination text
+ * @param {number} speed milliseconds per character
+ */
+async function animateText(element, text, speed = 30) {
     for (let i = 0; i < text.length; i++) {
-        h1.textContent = text.substring(0, i + 1);
-        await new Promise((resolve) => setTimeout(resolve, 30));
+        element.textContent = text.substring(0, i + 1);
+        await new Promise((resolve) => setTimeout(resolve, speed));
     }
 }
 
@@ -31,7 +36,6 @@ async function animateText(text) {
                 headers: {
                     "User-Agent":
                         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
-                    "Accept-Language": "en-US, en;q=0.5",
                 },
             });
             const text = await response.text();
@@ -47,10 +51,10 @@ async function animateText(text) {
             console.error("fallback", error);
             errors++;
             if (errors === choices.length)
-                animateText("there was an error while parsing the url");
+                animateText(h1, "there was an error while parsing the url");
             continue;
         }
     }
 })();
 
-animateText("redirecting...");
+animateText(h1, "redirecting...");
