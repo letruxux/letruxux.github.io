@@ -8,10 +8,12 @@ const choices = [
     {
         url: "https://tecnologiacasa.it/streamingcommunity-nuovo-indirizzo/",
         selector: "a[target='_blank'][href*='streamingcommunity']",
+        property: "href",
     },
     {
         url: "https://www.informarea.it/streamingcommunity-nuovo-indirizzo/",
-        selector: 'span[style="color: #ff0000;"][href*="streamingcommunity"]',
+        selector: 'span[style="color: #ff0000;"]',
+        property: "textContent",
     },
 ];
 
@@ -42,9 +44,9 @@ async function animateText(element, text, speed = 30) {
             const parser = new DOMParser();
             const htmlDocument = parser.parseFromString(text, "text/html");
 
-            const newUrl = htmlDocument.querySelector(
-                choice.selector
-            ).textContent;
+            const newUrl = htmlDocument.querySelector(choice.selector)[
+                choice.property
+            ];
             location.href = newUrl;
             break;
         } catch (error) {
