@@ -7,7 +7,7 @@ let errors = 0;
 const choices = [
     {
         url: "https://tecnologiacasa.it/streamingcommunity-nuovo-indirizzo/",
-        selector: "p > a[target='_blank'][href*='streamingcommunity']",
+        selector: "a[target='_blank'][href*='streamingcommunity']",
     },
     {
         url: "https://www.informarea.it/streamingcommunity-nuovo-indirizzo/",
