@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SkillIcons Builder</title>
+        <link rel="stylesheet" href="css/skillbuilder.css" />
+    </head>
+    <body>
+        <div id="loading"><div class="loader"></div></div>
+        <div id="icons">
+            <h3 id="title"></h3>
+            <label for="perline">Icons per line:</label>
+            <input type="number" name="perline" id="perline" min="0" max="50" value="15" />
+            <table>
+                <tr>
+                    <th>Icon</th>
+                    <th>Select</th>
+                </tr>
+            </table>
+        </div>
+        <div class="result-container">
+            <img src="" alt="SkillIcons.dev" id="result" loading="eager" />
+            <button
+                class="link"
+                onclick="copyToClipboard(getNewSkillIconsUrl()); alert('SkillIcons link copied to clipboard')"
+            >
+                <span>Copy</span>
+            </button>
+            <a href="https://skillicons.dev"><img class="skillicons" src="assets/skillicons.svg" alt="SkillIcons" /></a>
+        </div>
+
+        <script src="js/skillbuilder.js"></script>
+    </body>
+</html>

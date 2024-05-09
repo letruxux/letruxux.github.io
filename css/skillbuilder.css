@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+    margin: 0;
+    color: white;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+div#icons {
+    position: fixed;
+    min-height: 100%;
+    height: 100%;
+    width: clamp(10%, 30%, 30%);
+    left: 0%;
+    background-color: rgb(10, 10, 10);
+    padding: 15px;
+}
+
+div.result-container {
+    position: fixed;
+    min-height: 100%;
+    height: 100%;
+    width: 70%;
+    left: 30%;
+    background-color: rgb(23, 23, 23);
+    padding: 15px;
+}
+
+div.result-container img#result {
+    width: calc(100% - 30px);
+    max-height: 85%;
+    min-height: 85%;
+    /* outline: 1px solid white; */
+}
+div.result-container img.skillicons {
+    display: block;
+    max-height: 5%;
+    margin: auto;
+
+    border: 2px solid transparent; /* <- here */
+    transition: border 0.25s ease;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+div.result-container img.skillicons:hover {
+    border: 2px solid white;
+}
+
+div.result-container .link {
+    background: none;
+    color: white;
+    border: none;
+    width: 125px;
+    height: 5%;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+}
+
+div.result-container .link span {
+    border: 2px solid transparent; /* <- here */
+    transition: border 0.25s ease;
+    padding: 10px;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+div.result-container .link:hover span {
+    border: 2px solid white;
+}
+
+tr:nth-child(1) th:nth-child(1) {
+    float: left;
+}
+
+tr:nth-child(1) th:nth-child(2) {
+    float: right;
+}
+
+th,
+td {
+    padding: 5px;
+    min-width: 34px;
+}
+
+tr {
+    outline: 1px solid white;
+    min-width: 34px;
+}
+
+tr input {
+    width: 16px;
+    height: 16px;
+    float: right;
+    cursor: pointer;
+}
+
+table {
+    margin-top: 15px;
+    min-width: calc(100% - 30px);
+    width: calc(100% - 30px);
+    /* outline: 1px solid white; */
+}
+
+div#icons {
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+div#icons::-webkit-scrollbar {
+    display: none;
+}
+
+td:nth-child(1) {
+    display: grid;
+    grid-template-columns: calc(32px + 10px) 70%;
+    grid-template-rows: 1fr;
+}
+
+td:nth-child(1) pre {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+td:nth-child(1) img {
+    padding: 5px;
+    width: 32px;
+    max-height: 42px;
+    min-height: 42px;
+}
+
+td pre {
+    margin: 0;
+    margin-left: 5px;
+}
+
+/* HTML: <div class="loader"></div> */
+/* https://css-loaders.com/spinner/ */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    --_c: no-repeat radial-gradient(farthest-side, #ffffff 92%, #0000);
+    background: var(--_c) top, var(--_c) left, var(--_c) right, var(--_c) bottom;
+    background-size: 12px 12px;
+    animation: l7 1s infinite;
+    margin: 0;
+    position: absolute;
+    top: calc(50vh - 25px);
+    left: calc(50vw - 25px);
+}
+@keyframes l7 {
+    to {
+        transform: rotate(0.5turn);
+    }
+}
+
+#loading {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: black;
+    transition: opacity 1s ease;
+}
+
+.loaded {
+    pointer-events: none;
+    opacity: 0;
+}
