@@ -10,6 +10,9 @@
         <div id="loading"><div class="loader"></div></div>
         <div id="icons">
             <h3 id="title"></h3>
+            <button class="link" onclick="reArrange()">
+                <span>Rearrange</span>
+            </button>
             <label for="perline">Icons per line:</label>
             <input type="number" name="perline" id="perline" min="0" max="50" value="15" />
             <table>
@@ -23,6 +26,7 @@
             <img src="" alt="SkillIcons.dev" id="result" loading="eager" />
             <button
                 class="link"
+                style="margin: auto"
                 onclick="copyToClipboard(getNewSkillIconsUrl()); alert('SkillIcons link copied to clipboard')"
             >
                 <span>Copy</span>

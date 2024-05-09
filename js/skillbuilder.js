@@ -176,4 +176,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadImage(getNewSkillIconsUrl()).then(() => loadingElement.classList.add("loaded"));
 });
 
+function reArrange() {
+    const bUrl = getNewSkillIconsUrl();
+    location.href = "/skillbuilder-arrange.html?u=" + encodeURIComponent(bUrl);
+}
+
 document.querySelector("input#perline").onchange = updateImage;
