@@ -16,7 +16,7 @@ npx tsc --init
 New-Item -ItemType File -Path "./src/index.ts" -Force
 
 # Add .gitignore
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/microsoft/TypeScript/main/.gitignore" | Out-File -FilePath ".gitignore"
+(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/microsoft/TypeScript/main/.gitignore").Content | Out-File -FilePath ".gitignore"
 
 # Edit package.json (chatgpt)
 
