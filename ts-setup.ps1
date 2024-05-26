@@ -1,5 +1,8 @@
 # irm https://letruxux.github.io/ts-setup.ps1 | iex
 
+# Initialize git repo
+git init
+
 # Create src directory
 New-Item -ItemType Directory -Path "src" -Force
 
