@@ -1,7 +1,7 @@
 # irm https://letruxux.github.io/ts-setup.ps1 | iex
 
 # Initialize git repo
-git init
+# git init
 
 # Create src directory
 New-Item -ItemType Directory -Path "src" -Force
@@ -19,7 +19,7 @@ npx tsc --init
 New-Item -ItemType File -Path "./src/index.ts" -Force
 
 # Add .gitignore
-(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/microsoft/TypeScript/main/.gitignore").Content | Out-File -FilePath ".gitignore"
+# (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/microsoft/TypeScript/main/.gitignore").Content | Out-File -FilePath ".gitignore"
 
 # Edit package.json (chatgpt)
 
