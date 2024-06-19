@@ -43,6 +43,10 @@ h1 {
     margin-bottom: 5px;
 }
 
+.button img {
+    max-height: 50px;
+}
+
 .button:not(:last-child) {
     margin-right: 5px;
 }
