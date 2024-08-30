@@ -15,7 +15,8 @@ const selectedIcons = newUrlParams
     .filter((e) => e);
 
 resultImg.onload = () => {
-    if (!loadingElement.classList.contains("loaded")) loadingElement.classList.add("loaded");
+    if (!loadingElement.classList.contains("loaded"))
+        loadingElement.classList.add("loaded");
 };
 
 // https://stackoverflow.com/a/66180709/20808998
@@ -29,7 +30,8 @@ const loadImage = (src) =>
 
 function buildNewUrl(old) {
     const lis = document.querySelectorAll("#icons ul li");
-    const params = new URLSearchParams({ ...old });
+    const params = new URLSearchParams();
+    params.append("perline", old.get("perline"));
     const items = [];
     for (const li of lis) items.push(li.textContent);
     params.append("i", items.join(","));
@@ -84,7 +86,11 @@ function dragStart(e) {
 
 function isBefore(el1, el2) {
     if (el2.parentNode === el1.parentNode)
-        for (var cur = el1.previousSibling; cur && cur.nodeType !== 9; cur = cur.previousSibling)
+        for (
+            var cur = el1.previousSibling;
+            cur && cur.nodeType !== 9;
+            cur = cur.previousSibling
+        )
             if (cur === el2) return true;
     return false;
 }
