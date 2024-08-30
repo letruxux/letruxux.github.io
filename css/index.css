@@ -58,10 +58,6 @@ h1 {
 button {
     border: none;
 }
-a:any-link {
-    color: rgb(127, 157, 255);
-    font-weight: 600;
-}
 
 /* Media Queries for Mobile */
 @media only screen and (max-width: 600px) {
