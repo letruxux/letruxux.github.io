@@ -49,14 +49,15 @@ function copyToClipboard(text) {
 
 async function fetchMd() {
     let resp;
+    const secondPart = repoAuthor !== "LelouchFR" ? "main/" : "refs/heads/main/"; // https://raw.githubusercontent.com/LelouchFR/skill-icons/refs/heads/main/README.md
     try {
-        resp = await fetch("https://raw.githubusercontent.com/" + repoAuthor + "/skill-icons/main/readme.md");
+        resp = await fetch("https://raw.githubusercontent.com/" + repoAuthor + "/skill-icons/"+secondPart+"readme.md");
         if (!resp.ok) {
             throw new Error("Trying README.md");
         }
     } catch (error) {
         try {
-            resp = await fetch("https://raw.githubusercontent.com/" + repoAuthor + "/skill-icons/main/README.md");
+            resp = await fetch("https://raw.githubusercontent.com/" + repoAuthor + "/skill-icons/"+secondPart+"README.md");
         } catch (error) {
             return "";
         }
